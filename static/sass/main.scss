@@ -1,0 +1,899 @@
+$main-color: #0ee2ed;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+::selection {
+    background: rgb(14, 226, 237, 0.5);
+}
+
+@mixin respond($breakpoint) {
+    @if $breakpoint==big-desktop {
+        @media only screen and (min-width:75em) {
+            @content;
+        }
+    }
+    @if $breakpoint==big-monitor {
+        @media only screen and (max-width:66em) {
+            @content;
+        }
+    }
+    @if $breakpoint==tab-land {
+        @media only screen and (max-width:61.9em) {
+            @content;
+        }
+    }
+    @if $breakpoint==tab-port {
+        @media only screen and (max-width:48em) {
+            @content;
+        }
+    }
+    @if $breakpoint==phone {
+        @media only screen and (max-width:36em) {
+            @content;
+        }
+    }
+    @if $breakpoint==small-phone {
+        @media only screen and (max-width:30em) {
+            @content;
+        }
+    }
+}
+
+body {
+    font-family: 'HvDTrial Brandon Grotesque', sans-serif;
+    @include respond(tab-land) {
+        font-size: 80%;
+    }
+    @include respond(tab-port) {
+        font-size: 70%;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    body {
+        width: 400px;
+    }
+}
+
+.nav {
+    width: 100%;
+    height: 25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fafafa;
+    .nav-left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        h2 {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgb(30, 30, 30);
+            margin: 1rem;
+            text-align: center;
+        }
+        p {
+            display: flex;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            text-align: center;
+            a {
+                text-decoration: none;
+                color: $main-color;
+            }
+        }
+        a {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            img {
+                width: 15rem;
+                height: 12rem;
+            }
+        }
+    }
+    .nav-right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        ul {
+            list-style: none;
+            display: flex;
+            li {
+                margin: 1rem;
+                text-align: center;
+                a {
+                    color: rgb(30, 30, 30);
+                    font-size: 1.2rem;
+                    text-decoration: none;
+                    text-transform: uppercase;
+                    font-weight: 700;
+                    transition: all .5s;
+                    text-align: center;
+                    @include respond(tab-port) {
+                        font-size: 1rem;
+                    }
+                    @include respond(phone) {
+                        font-size: .7rem;
+                    }
+                    &:hover {
+                        color: $main-color;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100000;
+    height: 10rem;
+    border-radius: 0 0 2rem 2rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 1rem;
+    & .nav-left {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        & .sticky-h2 {
+            display: flex;
+            justify-content: center;
+            align-items: start;
+            flex-direction: column;
+            & p {
+                @include respond(tab-port) {
+                    display: none;
+                }
+                text-align: left;
+            }
+            @media only screen and (max-width: 1323px) {
+                & h2 {
+                    font-size: 1.2rem !important;
+                }
+                & p {
+                    font-size: 0.9rem;
+                }
+            }
+            & h2 {
+                font-size: 1.7rem;
+                text-align: left;
+                margin: 0;
+                margin-bottom: .5rem;
+                @include respond(tab-land) {
+                    margin-right: 1rem;
+                }
+                @include respond(tab-port) {
+                    font-size: 1rem !important;
+                }
+                @include respond(phone) {
+                    display: none;
+                }
+            }
+        }
+        & a img {
+            width: 11rem;
+            height: 8rem;
+            @include respond(big-monitor) {
+                width: 8rem;
+                height: 6rem;
+            }
+        }
+    }
+    & .nav-right {
+        button {
+            padding: 1rem;
+            border-radius: 50%;
+            display: none;
+            border: none;
+            background-color: rgb(180, 180, 180);
+            font-size: 3rem;
+            font-family: inherit;
+            width: 5rem;
+            height: 5rem;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+            @media only screen and (max-width: 1000px) {
+                & {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+        }
+    }
+    & .mobile-nav {
+        position: fixed;
+        top: 10rem;
+        left: 0;
+        width: 100%;
+        height: 30rem;
+        background-color: #fafafa;
+        border-radius: 0 0 2rem 2rem;
+        display: none;
+        padding: 3% 6%;
+        justify-content: center;
+        flex-wrap: wrap;
+        overflow: auto;
+        & a {
+            text-decoration: none;
+            text-transform: uppercase;
+            color: rgb(20, 20, 20);
+            font-weight: 500;
+            font-size: 2.5rem;
+            margin: 1rem 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    }
+    @media only screen and (max-width: 1323px) {
+        & ul li a {
+            font-size: .9rem !important;
+        }
+    }
+    @media only screen and (max-width: 1000px) {
+        & ul {
+            display: none !important;
+        }
+    }
+}
+
+.header {
+    width: 100%;
+    padding: 7% 0;
+    background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/static/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
+    background-size: 100% 100%;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h1 {
+        color: white;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 4rem;
+        text-align: center;
+        width: 90%;
+        @include respond(tab-land) {
+            font-size: 3rem;
+            margin: 1rem;
+        }
+        @include respond(phone) {
+            font-size: 2.5rem;
+        }
+    }
+    h2 {
+        color: $main-color;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 2rem;
+        width: 90%;
+        text-align: center;
+        @include respond(tab-port) {
+            font-size: 1.5rem;
+        }
+    }
+    .buttons {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        a {
+            text-decoration: none;
+            color: $main-color;
+            background-color: white;
+            height: 100%;
+            border-radius: 2rem;
+            width: 15rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.5rem;
+            padding: 1rem;
+            margin: 1rem 2rem;
+            font-weight: 700;
+            text-align: center;
+            transition: all .5s;
+            background-size: 250%;
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $main-color 50%);
+            &:hover {
+                color: white;
+                transform: translate(1rem);
+                background-position: 100%;
+            }
+        }
+    }
+}
+
+.about-section {
+    padding: 7% 3%;
+    @include respond(tab-port) {
+        padding: 10% 3%;
+    }
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    & .about-main {
+        width: 100%;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        flex-wrap: wrap;
+        & .about-left {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1.5rem;
+            & div.background-img {
+                background-image: url(/static/images/laura3.jpg);
+                background-size: 100% 100%;
+                background-position: center;
+                width: 28rem;
+                height: 40rem;
+                border-radius: 2rem;
+                box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+            }
+            @media only screen and (max-width: 1227px) {
+                & {
+                    width: 100%;
+                }
+                & div.background-img {
+                    width: 20rem;
+                    height: 20rem;
+                    background-size: 100% 130%;
+                    background-position: 29% 29%;
+                    border-radius: 50%;
+                }
+            }
+        }
+        & .about-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            & h1 {
+                font-size: 4.5rem;
+                color: $main-color;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                text-align: center;
+                @include respond(phone) {
+                    font-size: 3rem;
+                }
+            }
+            & h2 {
+                font-size: 2rem;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                margin-bottom: 3rem;
+                text-align: center;
+            }
+            width: 40rem;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            p {
+                font-weight: 500;
+                font-size: 1.45rem;
+                text-align: center;
+                @media only screen and (max-width: 1227px) {
+                    & {
+                        font-size: 1.4rem;
+                    }
+                }
+                @include respond(tab-land) {
+                    font-size: 1.3rem;
+                }
+                @include respond(tab-port) {
+                    font-size: 1.2rem;
+                }
+            }
+            @media only screen and (max-width: 1227px) {
+                & {
+                    width: 50rem;
+                }
+            }
+        }
+    }
+}
+
+.services-section {
+    width: 100%;
+    background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/static/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
+    background-size: 100% 100%;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 7% 7%;
+    & h1 {
+        color: $main-color;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 4rem;
+        width: 90%;
+        text-align: center;
+    }
+    & .services {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        flex-direction: row;
+        margin-top: 3rem;
+        & a:link, & a:visited {
+            text-decoration: none;
+            background-color: white;
+            color: $main-color;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-radius: 6rem;
+            font-size: 2rem;
+            text-align: center;
+            letter-spacing: 2px;
+            width: 20rem;
+            height: 10rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem;
+            transition: all .5s;
+            background-size: 250%;
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $main-color 50%);
+            &:hover {
+                transform: translate(1rem);
+                background-position: 100%;
+                color: white;
+                
+            }
+            &:active {
+                transform: translateX(2px);
+            }
+        }
+    }
+}
+
+.service-section {
+    background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/static/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
+    background-size: 100% 100%;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 7% 7%;
+    & h1 {
+        color: $main-color;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 4rem;
+        width: 90%;
+        text-align: center;
+        word-wrap: break-word;
+        @include respond(tab-port) {
+            font-size: 3rem;
+        }
+    }
+    & p {
+        margin-top: 2rem;
+        color: white;
+        font-weight: 500;
+        font-size: 1.5rem;
+        text-align: center;
+    }
+    .buttons {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        a {
+            text-decoration: none;
+            color: $main-color;
+            background-color: white;
+            height: 100%;
+            border-radius: 2rem;
+            width: 17rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.5rem;
+            padding: 1rem;
+            margin: 1rem 2rem;
+            font-weight: 700;
+            text-align: center;
+            transition: all .5s;
+            background-size: 250%;
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $main-color 50%);
+            &:hover {
+                color: white;
+                transform: translate(1rem);
+                background-position: 100%;
+            }
+        }
+    }
+}
+
+.resources-section {
+    width: 100%;
+    background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/static/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
+    background-size: 100% 100%;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 7% 7%;
+    & h1 {
+        color: $main-color;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 4rem;
+        width: 90%;
+        text-align: center;
+    }
+    & h2 {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 2rem;
+        text-align: center;
+        color: white;
+    }
+    .buttons {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 50%;
+        height: 4rem;
+        flex-wrap: wrap;
+        a {
+            text-decoration: none;
+            color: $main-color;
+            background-color: white;
+            height: 100%;
+            border-radius: 2rem;
+            width: 15rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.5rem;
+            margin: 1rem;
+            font-weight: 700;
+            text-align: center;
+            transition: all .5s;
+            background-size: 250%;
+            background-image: linear-gradient(120deg, transparent 0%, transparent 50%, $main-color 50%);
+            &:hover {
+                color: white;
+                transform: translate(1rem);
+                background-position: 100%;
+            }
+        }
+    }
+}
+
+.resources-main {
+    padding: 7% 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    & h1 {
+        color: $main-color;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 4rem;
+        width: 90%;
+        text-align: center;
+        margin-bottom: .5rem;
+    }
+    & .resources-row {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        flex-wrap: wrap;
+        margin-bottom: 5rem;
+        & a {
+            margin: 1rem;
+            background-color: #fafafa;
+            padding: 2rem;
+            border-radius: 2rem;
+            text-decoration: none;
+            color: $main-color;
+            border-radius: 5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+            width: 20rem;
+            height: 10rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
+            transition: all .5s;
+            &:hover {
+                background-color: $main-color;
+                color: white;
+                transform: translateY(-4px);
+            }
+            &:active {
+                background-color: $main-color;
+                color: white;
+                transform: translateY(4px);
+            }
+        }
+    }
+}
+
+.contact-section {
+    width: 100%;
+    background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/static/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
+    background-size: 100% 100%;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 7% 7%;
+    & h1 {
+        color: $main-color;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        font-size: 4rem;
+        width: 90%;
+        text-align: center;
+        margin-bottom: .5rem;
+    }
+    form, .form-group {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 3% 7%;
+        @include respond(tab-port) {
+            padding: 3% 3%;
+        }
+        width: 100%;
+        border-radius: 2rem;
+        & input {
+            padding: 1rem;
+            font-family: inherit;
+            border-radius: 4rem;
+            border: none;
+            font-size: 2rem;
+            @include respond(phone) {
+                font-size: 1.5rem;
+            }
+            letter-spacing: 2px;
+            color: $main-color;
+            font-weight: 700;
+            width: 100%;
+            transition: all .5s;
+            &:focus {
+                outline: none;
+                transform: translateY(-4px);
+                box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.5);
+            }
+            &::placeholder {
+                color: $main-color;
+                text-transform: uppercase;
+            }
+        }
+        & textarea:not(textarea.form-control) {
+            display: none;
+        }
+        & textarea.form-control {
+            padding: 1rem;
+            font-family: inherit;
+            border-radius: 2rem;
+            border: none;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            color: $main-color;
+            font-weight: 700;
+            width: 100%;
+            resize: none;
+            height: 16rem;
+            transition: all .5s;
+            @include respond(phone) {
+                font-size: 1.5rem;
+            }
+            &:focus {
+                outline: none;
+                transform: translateY(-4px);
+                box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.5);
+            }
+            &::placeholder {
+                color: $main-color;
+                text-transform: uppercase;
+            }
+        }
+        & label {
+            display: none;
+        }
+        & input[type=submit] {
+            border: none;
+            padding: 1rem 2rem;
+            font-family: inherit;
+            background-color: $main-color;
+            border-radius: 4rem;
+            font-size: 3rem;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin: 1rem;
+            width: 12rem;
+            transition: all .5s;
+            &:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.5);
+            }
+            &:active {
+                transform: translateY(4px);
+                box-shadow: 0 0.5rem 1rem rgba(255, 255, 255, 0.5);
+            }
+        }
+        & .contact-name {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            .input-box {
+                width: 47%;
+            }
+        }
+    }
+}
+
+footer {
+    background-color: #202020;
+    padding: 3% 3%;
+    overflow: hidden;
+    img {
+        border-radius: 50%;
+        width: 12rem;
+        height: 12rem;
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    .footer-main {
+        display: flex;
+        justify-content: start;
+        align-items: start;
+        flex-direction: column;
+        h1 {
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: white;
+        }
+        margin: 3rem;
+        color: $main-color;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        div {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+        }
+        a {
+            color: $main-color;
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+        p {
+            text-align: center;
+        }
+        @media only screen and (max-width: 884px) {
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    }
+    .footer-extras {
+        display: flex;
+        width: 30rem;
+        @include respond(phone) {
+            width: 100%;
+        }
+        .footer-pages {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+            width: 50%;
+            margin: 0 1rem;
+            h1 {
+                width: 100%;
+                text-align: center;
+                text-transform: uppercase;
+                letter-spacing: 2px;
+                color: white;
+                padding-bottom: .5rem;
+                border-bottom: 2px solid $main-color;
+                margin-bottom: 1rem;
+            }
+            a {
+                text-decoration: none;
+                color: white;
+                letter-spacing: 2px;
+                text-transform: uppercase;
+                font-weight: 500;
+                margin-bottom: .5rem;
+                text-align: center;
+                transition: all .5s;
+                &:hover {
+                    color: $main-color;
+                }
+            }
+        }
+        .footer-other {
+            color: white;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            flex-direction: column;
+            margin: 0 1rem;
+            p {
+                margin: 0.5rem 0;
+            }
+            h1 {
+                width: 100%;
+                padding-bottom: .5rem;
+                border-bottom: 2px solid $main-color;
+                margin-bottom: 1rem;
+            }
+            a {
+                text-decoration: none;
+                color: $main-color;
+                transition: all .5s;
+            }
+            width: 50%;
+        }
+    }
+}

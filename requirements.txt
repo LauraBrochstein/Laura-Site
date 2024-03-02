@@ -1,0 +1,8 @@
+gunicorn
+Flask
+eventlet
+Flask-WTF
+WTForms
+Flask-Bootstrap
+resend
+python_dotenv

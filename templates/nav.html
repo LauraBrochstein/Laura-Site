@@ -1,0 +1,79 @@
+<nav class="nav">
+    <div class="nav-left">
+        <!-- https://media.licdn.com/dms/image/C4E03AQEFrzuZRDfMog/profile-displayphoto-shrink_800_800/0/1517663980266?e=2147483647&v=beta&t=eiOjd1kk2o7fTe-73rnwmL6xt73QSyAVpON_9kwawzc -->
+        <a href="/"><img src="/static/images/logobg.png" alt="Laura"></a>
+        <h2>Laura Shulman Brochstein, LISCW</h2>
+        <p>Marblehead, MA -&nbsp;<a href="tel://6176866381">617.686.6381</a>&nbsp;-&nbsp;<a href="mailto:laura.brochstein@gmail.com">Email</a></p>
+    </div>
+    <div class="nav-right">
+        <ul>
+            <li><a href="/#about">About Me</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/resources">Resources</a></li>
+            <li><a href="/contact">Contact Me</a></li>
+        </ul>
+    </div>
+</nav>
+<nav class="nav sticky-nav" style="display: none;">
+    <div class="nav-left">
+        <!-- https://media.licdn.com/dms/image/C4E03AQEFrzuZRDfMog/profile-displayphoto-shrink_800_800/0/1517663980266?e=2147483647&v=beta&t=eiOjd1kk2o7fTe-73rnwmL6xt73QSyAVpON_9kwawzc -->
+        <a href="/"><img src="/static/images/logobg.png" alt="Laura"></a>
+        <div class="sticky-h2">
+            <h2>Laura Shulman Brochstein, LISCW</h2>
+            <p>Marblehead, MA -&nbsp;<a href="tel://6176866381">617.686.6381</a>&nbsp;-&nbsp;<a href="mailto:laura.brochstein@gmail.com">Email</a></p>
+        </div>
+    </div>
+    <div class="nav-right">
+        <ul>
+            <li><a href="/#about">About Me</a></li>
+            <li><a href="/services">Services</a></li>
+            <li><a href="/resources">Resources</a></li>
+            <li><a href="/contact">Contact Me</a></li>
+        </ul>
+        <button class="nav-btn">&equiv;</button>
+    </div>
+    <div class="mobile-nav">
+        <a href="/">Home</a>
+        <a href="/#about">About Me</a>
+        <a href="/services">Services</a>
+        <a href="/resources">Resources</a>
+        <a href="/contact">Contact Me</a>
+        <a href="/services/managing-life-transitions">Managing Life Transitions</a>
+        <a href="/services/parenting">Parenting</a>
+        <a href="/services/lgbtq-identity">LGBTQ+ Identity</a>
+        <a href="/services/anxiety-depression">Anxiety and Depression</a>
+    </div>
+</nav>
+<script>
+    let navOpen = false;
+    setInterval(() => {
+        if (window.scrollY > 300 && $(".sticky-nav").css("display") === "none") {
+            $(".sticky-nav").css("display", "flex")
+        } else if (window.scrollY <= 300 && $(".sticky-nav").css("display") !== "none") {
+            $(".sticky-nav").css("display", "none")
+            $(".nav-btn").html("&equiv;")
+            $(".nav").css({"border-radius": "0 0 2rem 2rem"})
+            $(".mobile-nav").css({"display": "none"})
+            navOpen = false;
+        }
+        if (!window.matchMedia("(max-width: 1000px)").matches) {
+            $(".nav-btn").html("&equiv;")
+            $(".nav").css({"border-radius": "0 0 2rem 2rem"})
+            $(".mobile-nav").css({"display": "none"})
+            navOpen = false;
+        }
+    }, 1)
+    $(".nav-btn").click(() => {
+        if (!navOpen) {
+            navOpen = true;
+            $(".nav-btn").html("X")
+            $(".nav").css({"border-radius": "0 0 0 0"})
+            $(".mobile-nav").css({"display": "flex"})
+        } else {
+            navOpen = false;
+            $(".nav-btn").html("&equiv;")
+            $(".nav").css({"border-radius": "0 0 2rem 2rem"})
+            $(".mobile-nav").css({"display": "none"})
+        }
+    })
+</script>

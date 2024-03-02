@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "nodemon": "^3.0.2",
+    "sass": "^1.71.0",
+    "scss": "^0.2.4"
+  },
+  "scripts": {
+    "compile:sass": "sass static/sass/main.scss static/style.css",
+    "watch:sass": "nodemon -e scss -x \"npm run compile:sass\""
+  }
+}

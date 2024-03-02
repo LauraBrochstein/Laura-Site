@@ -1,0 +1,28 @@
+{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Laura Shulman Brochstein - Contact</title>
+    {% include "head.html" %}
+</head>
+<body>
+    {% include "nav.html" %}
+    <section class="contact-section">
+        <h1>Contact Me</h1>
+        {{ form.csrf_token }}
+        {{ wtf.quick_form(form) }}
+        <script>
+            document.querySelector("form input[type='submit']").addEventListener("click", () => {
+               document.querySelector("form").querySelectorAll("input, textarea").forEach(e => {
+                if (e.value.trim() === "") {
+                    e.style = "box-shadow: 0 0.5rem 1rem rgba(255, 0, 0, 0.5);"
+                } else {
+                    e.style = "";
+                }
+               })
+            })
+        </script>
+    </section>
+    {% include "footer.html" %}
+</body>
+</html>
