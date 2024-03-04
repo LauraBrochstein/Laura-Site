@@ -1,4 +1,8 @@
-RewriteEngine On
-RewriteCond %{HTTPS} !=on
-RewriteRule ^(.*)$ https://laurashulmanbrochstein.org [L,R=301,NE]
-Header always set Content-Security-Policy "upgrade-insecure-requests;"
+#redirect http non-www to https://www
+RewriteCond %{HTTPS} off
+RewriteCond %{HTTP_HOST} ^(www\.)?example\.com$
+RewriteRule (.*) https://www.example.com/$1 [R=301,L]
+#redirect https non-www to www
+RewriteCond %{HTTPS} on
+RewriteCond %{HTTP_HOST} ^example\.com$
+RewriteRule (.*) https://www.example.com/$1 [R=301,L]

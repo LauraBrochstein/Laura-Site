@@ -49,11 +49,11 @@ class ContactForm(FlaskForm):
 
 from urllib.parse import urlparse, urlunparse
 @app.before_request
-def redirect_www():
+def redirect_nonwww():
     urlparts = urlparse(request.url)
-    if urlparts.netloc == 'www.laurashulmanbrochstein.org':
+    if urlparts.netloc == 'laurashulmanbrochstein.org':
         urlparts_list = list(urlparts)
-        urlparts_list[1] = 'laurashulmanbrochstein.org'
+        urlparts_list[1] = 'www.laurashulmanbrochstein.org'
         return redirect(urlunparse(urlparts_list), code=301)
 
 @app.route('/')
