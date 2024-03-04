@@ -47,14 +47,14 @@ class ContactForm(FlaskForm):
 #             msg=f"Subject:{subject}\n\n{message}"
 #         )
 
-from urllib.parse import urlparse, urlunparse
-@app.before_request
-def redirect_nonwww():
-    urlparts = urlparse(request.url)
-    if urlparts.netloc == 'laurashulmanbrochstein.org':
-        urlparts_list = list(urlparts)
-        urlparts_list[1] = 'www.laurashulmanbrochstein.org'
-        return redirect(urlunparse(urlparts_list), code=301)
+# from urllib.parse import urlparse, urlunparse
+# @app.before_request
+# def redirect_nonwww():
+#     urlparts = urlparse(request.url)
+#     if urlparts.netloc == 'laurashulmanbrochstein.org':
+#         urlparts_list = list(urlparts)
+#         urlparts_list[1] = 'www.laurashulmanbrochstein.org'
+#         return redirect(urlunparse(urlparts_list), code=301)
 
 @app.route('/')
 def hello():
