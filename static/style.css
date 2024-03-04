@@ -243,7 +243,7 @@ body {
 .header {
   width: 100%;
   padding: 7% 0;
-  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/static/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
+  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
   background-size: 100% 100%;
   background-position: center;
   display: flex;
@@ -343,7 +343,7 @@ body {
   margin: 1.5rem;
 }
 .about-section .about-main .about-left div.background-img {
-  background-image: url(/static/images/laura3.jpg);
+  background-image: url(/images/laura3.jpg);
   background-size: 100% 100%;
   background-position: center;
   width: 28rem;
@@ -422,7 +422,7 @@ body {
 
 .services-section {
   width: 100%;
-  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/static/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
+  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
   background-size: 100% 100%;
   background-position: center;
   display: flex;
@@ -477,7 +477,7 @@ body {
 }
 
 .service-section {
-  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/static/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
+  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
   background-size: 100% 100%;
   background-position: center;
   display: flex;
@@ -543,7 +543,7 @@ body {
 
 .resources-section {
   width: 100%;
-  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/static/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
+  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
   background-size: 100% 100%;
   background-position: center;
   display: flex;
@@ -661,7 +661,7 @@ body {
 
 .contact-section {
   width: 100%;
-  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/static/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
+  background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url(/images/geordanna-cordero-5NE6mX0WVfQ-unsplash.jpg);
   background-size: 100% 100%;
   background-position: center;
   display: flex;
