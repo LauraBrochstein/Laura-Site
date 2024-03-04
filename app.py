@@ -46,7 +46,15 @@ class ContactForm(FlaskForm):
 #             to_addrs=receiver, 
 #             msg=f"Subject:{subject}\n\n{message}"
 #         )
-    
+
+from urllib.parse import urlparse, urlunparse
+@app.before_request
+def redirect_www():
+    urlparts = urlparse(request.url)
+    if urlparts.netloc == 'www.laurashulmanbrochstein.org':
+        urlparts_list = list(urlparts)
+        urlparts_list[1] = 'laurashulmanbrochstein.org'
+        return redirect(urlunparse(urlparts_list), code=301)
 
 @app.route('/')
 def hello():
