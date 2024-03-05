@@ -220,7 +220,7 @@ body {
 .sticky-nav .mobile-nav a {
   text-decoration: none;
   text-transform: uppercase;
-  color: rgb(20, 20, 20);
+  color: rgb(20, 20, 20) !important;
   font-weight: 500;
   font-size: 2.5rem;
   margin: 1rem 2rem;
@@ -228,6 +228,10 @@ body {
   justify-content: center;
   align-items: center;
   text-align: center;
+  transition: all 0.5s;
+}
+.sticky-nav .mobile-nav a:hover {
+  text-shadow: 5px 5px 0.5rem rgba(0, 0, 0, 0.5);
 }
 @media only screen and (max-width: 1323px) {
   .sticky-nav ul li a {
