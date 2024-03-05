@@ -190,6 +190,8 @@ body {
   display: none;
   border: none;
   background-color: rgb(180, 180, 180);
+  color: rgb(20, 20, 20) !important;
+  -webkit-appearance: none;
   font-size: 3rem;
   font-family: inherit;
   width: 5rem;
