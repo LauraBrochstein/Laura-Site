@@ -1,1 +1,9 @@
 User-agent: *
+
+User-Agent: Googlebot
+Allow: /templates/*
+
+User-agent: Bingbot
+Allow: /templates/*
+
+Sitemap: https://www.wavesofchangecg.com/sitemap.xml
