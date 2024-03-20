@@ -6,4 +6,4 @@ Allow: /templates/*
 User-agent: Bingbot
 Allow: /templates/*
 
-Sitemap: https://www.wavesofchangecg.com/sitemap.xml
+Sitemap: https://www.laurashulmanbrochstein.org/sitemap.xml
