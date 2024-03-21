@@ -56,7 +56,7 @@ def redirect_nonwww():
     if urlparts.netloc == 'laurashulmanbrochstein.org':
         urlparts_list = list(urlparts)
         urlparts_list[1] = 'www.laurashulmanbrochstein.org'
-        return redirect(urlunparse(urlparts_list), code=301
+        return redirect(urlunparse(urlparts_list), code=301)
 
 @app.route('/')
 def hello():
