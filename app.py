@@ -81,7 +81,7 @@ def contact():
             message = str(contactform.message.data)
             email = resend.Emails.send({
                 "from": "Eitan Brochstein <onboarding@resend.dev>",
-                "to": ["eitan.brochstein@icloud.com"],
+                "to": ["laura.brochstein@gmail.com"],
                 "subject": f"New Contact Message From {email}",
                 "html": f"<h1>Hi Laura,</h1><h2>There is a new message from {firstname}, {lastname} at {email}:</h2><p style='font-size: 2rem'>{message}</p>",
             })
