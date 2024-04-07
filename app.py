@@ -32,8 +32,6 @@ app.config.update(dict(
 ))
 app.config['SECRET_KEY'] = SECRET_APP_KEY
 
-resend.api_key = os.environ.get("RESEND_API_KEY")
-
 class ContactForm(FlaskForm):
     firstname = StringField("First Name", validators=[DataRequired()], render_kw={"placeholder": "First Name"})
     lastname = StringField("Last Name", validators=[DataRequired()], render_kw={"placeholder": "Last Name"})
