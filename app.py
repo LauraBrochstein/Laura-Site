@@ -4,13 +4,21 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField, EmailField
 from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap
-import resend, os, smtplib
+import os
+from flask_mailman import Mail, EmailMessage
 from os.path import join, dirname
 from dotenv import load_dotenv
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 app = Flask(__name__, static_url_path="")
 Bootstrap(app)
+
+app.config["MAIL_SERVER"] = "smtp.fastmail.com"
+app.config["MAIL_PORT"] = 465
+app.config["MAIL_USERNAME"] = "woccg@fastmail.com"
+app.config["MAIL_PASSWORD"] = "aej6qycypq44ct9e"
+app.config["MAIL_USE_TLS"] = False
+app.config["MAIL_USE_SSL"] = True
 
 import os
 SECRET_APP_KEY = os.urandom(32)
@@ -33,19 +41,6 @@ class ContactForm(FlaskForm):
     message = TextAreaField("Message", validators=[DataRequired()], render_kw={"placeholder": "Message"})
     recaptcha = RecaptchaField()
     submit = SubmitField("Send")
-
-
-# my_email = "eitantravels25@gmail.com"
-# password = "fyactjddptolnigu"
-# def sendemail(receiver, subject, message):
-#     with smtplib.SMTP_SSL("smtp.gmail.com", 465) as connection:
-#         connection.ehlo()
-#         connection.login(user=my_email, password=password)
-#         connection.sendmail(
-#             from_addr=my_email,
-#             to_addrs=receiver, 
-#             msg=f"Subject:{subject}\n\n{message}"
-#         )
 
 from urllib.parse import urlparse, urlunparse
 
@@ -79,13 +74,13 @@ def contact():
             lastname = str(contactform.lastname.data)
             email = str(contactform.email.data)
             message = str(contactform.message.data)
-            email = resend.Emails.send({
-                "from": "Eitan Brochstein <onboarding@resend.dev>",
-                "to": ["laura.brochstein@gmail.com"],
-                "subject": f"New Contact Message From {email}",
-                "html": f"<h1>Hi Laura,</h1><h2>There is a new message from {firstname}, {lastname} at {email}:</h2><p style='font-size: 2rem'>{message}</p>",
-            })
-            print(email)
+            msg = EmailMessage(
+                f"Contact information from {firstname} {lastname} at {email}:",
+                f"\nMessage:\n{message}",
+                "woccg@fastmail.com",
+                ["laurabrochstein@gmail.com"]
+            )
+            msg.send()
             return render_template("sent.html")
        except Exception as err:
            print(err)

@@ -4,5 +4,5 @@ eventlet
 Flask-WTF
 WTForms
 Flask-Bootstrap
-resend
+flask-mailman
 python_dotenv
