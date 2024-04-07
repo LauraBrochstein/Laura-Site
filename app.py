@@ -20,6 +20,8 @@ app.config["MAIL_PASSWORD"] = "aej6qycypq44ct9e"
 app.config["MAIL_USE_TLS"] = False
 app.config["MAIL_USE_SSL"] = True
 
+mail = Mail(app)
+
 import os
 SECRET_APP_KEY = os.urandom(32)
 SITE_KEY = os.environ.get("SITE_KEY")
