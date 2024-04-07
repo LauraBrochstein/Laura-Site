@@ -81,8 +81,7 @@ def contact():
             msg.send()
             return render_template("sent.html")
        except Exception as err:
-           print(err)
-           return jsonify({"Error": "Something wrong happened, error 500"})
+           return jsonify({"Error": str(err)})
     return render_template("contact.html", form=contactform)
 
 
