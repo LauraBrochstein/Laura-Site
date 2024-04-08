@@ -4,8 +4,9 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, SubmitField, EmailField
 from wtforms.validators import DataRequired
 from flask_bootstrap import Bootstrap
-import os
-from flask_mailman import Mail, EmailMessage
+import os, smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from os.path import join, dirname
 from dotenv import load_dotenv
 dotenv_path = join(dirname(__file__), '.env')
@@ -13,14 +14,12 @@ load_dotenv(dotenv_path)
 app = Flask(__name__, static_url_path="")
 Bootstrap(app)
 
-app.config["MAIL_SERVER"] = "smtp.fastmail.com"
-app.config["MAIL_PORT"] = 465
-app.config["MAIL_USERNAME"] = "woccg@fastmail.com"
-app.config["MAIL_PASSWORD"] = "aej6qycypq44ct9e"
+app.config["MAIL_SERVER"] = "live.smtp.mailtrap.io"
+app.config["MAIL_PORT"] = 587
+app.config["MAIL_USERNAME"] = "api"
+app.config["MAIL_PASSWORD"] = "3ff79f23898c1269feea3703f503babe"
 app.config["MAIL_USE_TLS"] = False
 app.config["MAIL_USE_SSL"] = True
-
-mail = Mail(app)
 
 import os
 SECRET_APP_KEY = os.urandom(32)
@@ -43,6 +42,22 @@ class ContactForm(FlaskForm):
     submit = SubmitField("Send")
 
 from urllib.parse import urlparse, urlunparse
+
+def send_email(receiver, subject, message):
+    messagehtml = MIMEMultipart()
+    messagehtml["To"] = receiver
+    messagehtml["From"] = 'eitantravels25@gmail.com'
+    messagehtml["Subject"] = subject
+
+    title = subject
+    messageText = MIMEText(message,'html')
+    messagehtml.attach(messageText)
+
+    s = smtplib.SMTP('smtp.gmail.com', 587)
+    s.starttls()
+    s.login("eitantravels25@gmail.com", "lkmzeijqholesvam")
+    s.sendmail("eitantravels25@gmail.com", receiver, messagehtml.as_string())
+    s.quit()
 
 @app.before_request
 def redirect_nonwww():
@@ -74,13 +89,8 @@ def contact():
             lastname = str(contactform.lastname.data)
             email = str(contactform.email.data)
             message = str(contactform.message.data)
-            msg = EmailMessage(
-                f"Contact information from {firstname} {lastname} at {email}:",
-                f"\nMessage:\n{message}",
-                "woccg@fastmail.com",
-                ["laurabrochstein@gmail.com"]
-            )
-            msg.send()
+            # create mail object
+            send_email("eitantravels25@gmail.com", f"New Contact Message from {firstname} {lastname} at {email}:", message)
             return render_template("sent.html")
        except Exception as err:
            return jsonify({"Error": str(err)})
