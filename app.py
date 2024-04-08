@@ -85,7 +85,7 @@ def contact():
             email = str(contactform.email.data)
             message = str(contactform.message.data)
             # create mail object
-            send_email("eitantravels25@gmail.com", f"New Contact Message from {firstname} {lastname} at {email}:", message)
+            send_email("laura.brochstein@gmail.com", f"New Contact Message from {firstname} {lastname} at {email}:", f"Hi Laura!\nWe got new contact information from {firstname} {lastname}, their email is {email},\nTheir Message:\n{message}")
             return render_template("sent.html")
        except Exception as err:
            return jsonify({"Error": str(err)})
