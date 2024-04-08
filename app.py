@@ -14,13 +14,6 @@ load_dotenv(dotenv_path)
 app = Flask(__name__, static_url_path="")
 Bootstrap(app)
 
-app.config["MAIL_SERVER"] = "live.smtp.mailtrap.io"
-app.config["MAIL_PORT"] = 587
-app.config["MAIL_USERNAME"] = "api"
-app.config["MAIL_PASSWORD"] = "3ff79f23898c1269feea3703f503babe"
-app.config["MAIL_USE_TLS"] = False
-app.config["MAIL_USE_SSL"] = True
-
 import os
 SECRET_APP_KEY = os.urandom(32)
 SITE_KEY = os.environ.get("SITE_KEY")
@@ -54,8 +47,10 @@ def send_email(receiver, subject, message):
     messagehtml.attach(messageText)
 
     s = smtplib.SMTP('smtp.gmail.com', 587)
+    s.ehlo()
     s.starttls()
-    s.login("eitantravels25@gmail.com", "lkmzeijqholesvam")
+    s.ehlo()
+    s.login("eitantravels25@gmail.com", "msoiknaautelynsv")
     s.sendmail("eitantravels25@gmail.com", receiver, messagehtml.as_string())
     s.quit()
 
