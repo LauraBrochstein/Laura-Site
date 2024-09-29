@@ -9,10 +9,12 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from os.path import join, dirname
 from dotenv import load_dotenv
+from flask_wtf.csrf import CSRFProtect
 dotenv_path = join(dirname(__file__), '.env')
 load_dotenv(dotenv_path)
 app = Flask(__name__, static_url_path="")
 Bootstrap(app)
+csrf = CSRFProtect(app)
 
 import os
 SECRET_APP_KEY = os.urandom(32)
@@ -76,8 +78,9 @@ def resources():
     return render_template("resources.html")
 
 @app.route("/contact", methods=["GET", "POST"])
+@csrf.exempt
 def contact():
-    contactform = ContactForm()
+    contactform: ContactForm = ContactForm()
     if contactform.validate_on_submit():
        try:
             firstname = str(contactform.firstname.data)
